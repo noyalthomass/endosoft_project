@@ -1,0 +1,91 @@
+<div class="main">
+  <div class="navbar">
+    <button (click)="cancel()">Cancel</button>
+    <h4>User Create and Update</h4>
+    <button (click)="logout()">Logout</button>
+  </div>
+  <div class="main-wrapper">
+    <div class="container login-container">
+      <div class="login form">
+        <header>User Data</header>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input
+              matInput
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="Enter your Name"
+            />
+            <div
+              *ngIf="userForm.get('name')?.touched && userForm.get('name')?.['invalid']"
+            >
+              <div *ngIf="userForm.get('name')?.errors?.['required']">
+                <small>Please enter your name</small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="date"
+              id="dob"
+              formControlName="dob"
+              placeholder="Enter your Date of Birth"
+            />
+            <div
+              *ngIf="userForm.get('dob')?.touched && userForm.get('dob')?.['invalid']"
+            >
+              <div *ngIf="userForm.get('dob')?.errors?.['required']">
+                <small>Please enter your date of birth</small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              matInput
+              type="text"
+              id="address"
+              formControlName="address"
+              placeholder="Enter your Address"
+            />
+            <div
+              *ngIf="userForm.get('address')?.touched && userForm.get('address')?.['invalid']"
+            >
+              <div *ngIf="userForm.get('address')?.errors?.['required']">
+                <small>Please enter your address</small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              matInput
+              type="tel"
+              id="number"
+              formControlName="number"
+              placeholder="Enter your Phone Number"
+            />
+            <div
+              *ngIf="
+                userForm.get('number')?.touched &&
+                userForm.get('number')?.invalid
+              "
+            >
+              <div
+                *ngIf="userForm.get('number')?.errors?.['required'] && !userForm.get('number')?.value"
+              >
+                <small>Please enter your phone number</small>
+              </div>
+              <div
+                *ngIf="userForm.get('number')?.errors?.['invalidPhoneNumber'] && userForm.get('number')?.value"
+              >
+                <small>Please enter a valid phone number</small>
+              </div>
+            </div>
+          </div>
+
+          <input type="submit" class="button" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

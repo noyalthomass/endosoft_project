@@ -1,0 +1,56 @@
+<div class="main">
+  <div class="main-wrapper">
+    <div class="container login-container">
+      <div class="login form">
+        <header>Login</header>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
+          />
+          <div *ngIf="fgEmail?.touched && fgEmail?.['invalid']">
+            <div *ngIf="fgEmail?.errors?.['required']">
+              <small>Please enter your email id</small>
+            </div>
+            <div *ngIf="fgEmail?.errors?.['email']">
+              <small>Invalid email id</small>
+            </div>
+            <div *ngIf="fgEmail?.errors?.['invalidEmail']">
+              <small>Please enter valid email id</small>
+            </div>
+          </div>
+
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Enter your password"
+          />
+          <div *ngIf="fgPassword?.touched && fgPassword?.['invalid']">
+            <div *ngIf="fgPassword?.errors?.['required']">
+              <small>Please enter your password</small>
+            </div>
+            <div *ngIf="fgPassword?.errors?.['invalidPassword']">
+              <small>Incorrect password</small>
+            </div>
+          </div>
+
+          <a href="#">Forgot password?</a>
+          <input
+            type="submit"
+            class="button"
+            [disabled]="!loginForm.valid"
+            value="Login"
+          />
+        </form>
+
+        <div class="signup">
+          <span class="signup">
+            Don't have an account?
+            <label (click)="signUp()">Signup</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

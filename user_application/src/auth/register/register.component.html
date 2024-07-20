@@ -1,0 +1,63 @@
+<div class="main">
+  <div class="main-wrapper">
+    <div class="container registration-container">
+      <div class="registration form">
+        <header>Signup</header>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSignup()">
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
+          />
+          <div *ngIf="fgEmail?.touched && fgEmail?.['invalid']">
+            <div *ngIf="fgEmail?.errors?.['required']">
+              <small>Please enter your email id</small>
+            </div>
+            <div *ngIf="fgEmail?.errors?.['email']">
+              <small>Invalid email id</small>
+            </div>
+          </div>
+
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Create a password"
+          />
+          <div *ngIf="fgPassword?.touched && fgPassword?.['invalid']">
+            <div *ngIf="fgPassword?.errors?.['required']">
+              <small>Please create a password</small>
+            </div>
+            <div *ngIf="fgPassword?.errors?.['minlength']">
+              <small>Password must be at least 6 characters</small>
+            </div>
+          </div>
+
+          <input
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
+          />
+          <div
+            *ngIf="fgConfirmPassword?.touched && fgConfirmPassword?.['invalid']"
+          >
+            <div *ngIf="fgConfirmPassword?.errors?.['required']">
+              <small>Please confirm your password</small>
+            </div>
+            <div *ngIf="fgConfirmPassword?.errors?.['mismatch']">
+              <small>Password mismatch</small>
+            </div>
+          </div>
+
+          <input type="submit" class="button" value="Signup" />
+        </form>
+
+        <div class="signup">
+          <span class="signup">
+            Already have an account?
+            <label (click)="login()">Login</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
